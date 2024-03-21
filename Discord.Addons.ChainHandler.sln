@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Addons.ChainHandler", "Discord.Addons.ChainHandler\Discord.Addons.ChainHandler.csproj", "{163C0C29-F600-4DAA-8812-4CCE8C25BA15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{163C0C29-F600-4DAA-8812-4CCE8C25BA15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163C0C29-F600-4DAA-8812-4CCE8C25BA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163C0C29-F600-4DAA-8812-4CCE8C25BA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163C0C29-F600-4DAA-8812-4CCE8C25BA15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
