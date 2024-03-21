@@ -1,9 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <PackageId>Discord.Addons.ChainHandler</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>oqo0</Authors>
+        <RepositoryUrl>https://github.com/oqo0/discord-chain-handler</RepositoryUrl>
+        <WebPage>https://github.com/oqo0/discord-chain-handler</WebPage>
+        <PackageTags>Discord;</PackageTags>
+        <Description>
+            Simple Discord.Net chain handler implementation
+        </Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
