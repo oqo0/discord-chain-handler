@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Addons.ChainHandler", "Discord.Addons.ChainHandler\Discord.Addons.ChainHandler.csproj", "{163C0C29-F600-4DAA-8812-4CCE8C25BA15}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E4AD6560-3FFB-414A-AD24-6023DFB287DD}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{24601C8B-0A58-44D5-BCFA-EB75440462AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Addons.ChainHandler", "src\Discord.Addons.ChainHandler\Discord.Addons.ChainHandler.csproj", "{28C42690-4312-4555-9ACC-59D5A8B6B792}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,12 @@ Global
 		{163C0C29-F600-4DAA-8812-4CCE8C25BA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{163C0C29-F600-4DAA-8812-4CCE8C25BA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{163C0C29-F600-4DAA-8812-4CCE8C25BA15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28C42690-4312-4555-9ACC-59D5A8B6B792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C42690-4312-4555-9ACC-59D5A8B6B792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C42690-4312-4555-9ACC-59D5A8B6B792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C42690-4312-4555-9ACC-59D5A8B6B792}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28C42690-4312-4555-9ACC-59D5A8B6B792} = {24601C8B-0A58-44D5-BCFA-EB75440462AD}
 	EndGlobalSection
 EndGlobal
