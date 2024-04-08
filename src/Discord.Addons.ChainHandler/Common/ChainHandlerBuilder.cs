@@ -1,7 +1,7 @@
 using Discord.Addons.ChainHandler.ChainHandlers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Discord.Addons.ChainHandler;
+namespace Discord.Addons.ChainHandler.Common;
 
 public class ChainHandlerBuilder
 {

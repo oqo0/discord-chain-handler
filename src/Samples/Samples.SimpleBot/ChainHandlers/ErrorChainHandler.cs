@@ -1,6 +1,7 @@
 using Discord;
 using Discord.Addons.ChainHandler;
 using Discord.Addons.ChainHandler.ChainHandlers;
+using Discord.Addons.ChainHandler.Common;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.Logging;

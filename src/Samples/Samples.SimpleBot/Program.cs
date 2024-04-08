@@ -2,6 +2,7 @@
 
 using Discord;
 using Discord.Addons.ChainHandler;
+using Discord.Addons.ChainHandler.Common;
 using Discord.Addons.Hosting;
 using Discord.Commands;
 using Discord.WebSocket;
