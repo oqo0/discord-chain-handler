@@ -1,14 +1,9 @@
-using Discord;
-using Discord.Addons.ChainHandler;
-using Discord.Addons.ChainHandler.ChainHandlers;
 using Discord.Addons.ChainHandler.Common;
-using Discord.Interactions;
-using Discord.WebSocket;
 using Microsoft.Extensions.Logging;
 
-namespace Samples.SimpleBot.ChainHandlers;
+namespace Discord.Addons.ChainHandler.Default;
 
-public class ErrorChainHandler : ChainHandler
+public class ErrorChainHandler : ChainHandlers.ChainHandler
 {
     private readonly ILogger<ErrorChainHandler> _logger;
 

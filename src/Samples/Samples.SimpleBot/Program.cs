@@ -3,13 +3,13 @@
 using Discord;
 using Discord.Addons.ChainHandler;
 using Discord.Addons.ChainHandler.Common;
+using Discord.Addons.ChainHandler.Default;
 using Discord.Addons.Hosting;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Samples.SimpleBot;
-using Samples.SimpleBot.ChainHandlers;
 
 var host = Host.CreateDefaultBuilder(args);
 

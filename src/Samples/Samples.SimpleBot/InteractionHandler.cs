@@ -2,13 +2,13 @@ using System.Reflection;
 using Discord;
 using Discord.Addons.ChainHandler;
 using Discord.Addons.ChainHandler.Common;
+using Discord.Addons.ChainHandler.Default;
 using Discord.Addons.Hosting;
 using Discord.Addons.Hosting.Util;
 using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Samples.SimpleBot.ChainHandlers;
 
 namespace Samples.SimpleBot;
 
