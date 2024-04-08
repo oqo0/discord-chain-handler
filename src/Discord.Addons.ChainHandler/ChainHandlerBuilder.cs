@@ -1,3 +1,4 @@
+using Discord.Addons.ChainHandler.ChainHandlers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Discord.Addons.ChainHandler;

@@ -1,13 +1,13 @@
-namespace Discord.Addons.ChainHandler;
+namespace Discord.Addons.ChainHandler.ChainHandlers;
 
-public abstract class InteractionChainHandler : IChainHandler
+public abstract class ChainHandler : IChainHandler
 {
     private IChainHandler? _nextChainHandler;
     private readonly IServiceProvider _provider;
     private readonly InteractionService _interactionService;
     private readonly DiscordSocketClient _socketClient;
 
-    protected InteractionChainHandler(
+    protected ChainHandler(
         IServiceProvider provider,
         InteractionService interactionService,
         DiscordSocketClient socketClient)

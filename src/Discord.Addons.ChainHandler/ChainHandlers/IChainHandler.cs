@@ -1,4 +1,4 @@
-namespace Discord.Addons.ChainHandler;
+namespace Discord.Addons.ChainHandler.ChainHandlers;
 
 public interface IChainHandler
 {
