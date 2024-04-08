@@ -23,14 +23,14 @@ public abstract class InteractionChainHandler : IChainHandler
         return _nextChainHandler;
     }
 
-    public virtual Task<IResult> Handle(SocketInteraction interaction)
+    public virtual async Task<IResult> Handle(SocketInteraction interaction)
     {
         if (_nextChainHandler is not null)
         {
-            return _nextChainHandler.Handle(interaction);
+            return await _nextChainHandler.Handle(interaction);
         }
-        
+    
         var context = new SocketInteractionContext(_socketClient, interaction);
-        return _interactionService.ExecuteCommandAsync(context, _provider);
+        return await _interactionService.ExecuteCommandAsync(context, _provider);
     }
 }
