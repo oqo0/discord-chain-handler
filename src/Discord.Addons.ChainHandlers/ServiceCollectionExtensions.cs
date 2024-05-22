@@ -1,6 +1,8 @@
+using Discord.Addons.ChainHandlers.Configuration;
+using Discord.Addons.ChainHandlers.Configuration.Options;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Discord.Addons.ChainHandlers.Configuration;
+namespace Discord.Addons.ChainHandlers;
 
 public static class ServiceCollectionExtensions
 {
