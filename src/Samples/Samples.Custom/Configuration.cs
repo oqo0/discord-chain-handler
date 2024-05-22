@@ -2,8 +2,9 @@ using Discord.Addons.ChainHandlers;
 using Discord.Addons.ChainHandlers.Default;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Samples.Custom.ChainHandlers;
 
-namespace Samples.SimpleBot;
+namespace Samples.Custom;
 
 internal static class Configuration
 {
@@ -17,7 +18,8 @@ internal static class Configuration
             {
                 handlerOptions
                     .Add<ErrorChainHandler>()
-                    .Add<ProblemChainHandler>();
+                    .Add<ProblemChainHandler>()
+                    .Add<RateLimiter>();
             });
 
             options.UseFinalHandler(async interactionContext =>

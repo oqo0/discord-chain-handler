@@ -5,7 +5,7 @@ using Discord.Addons.Hosting;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Hosting;
-using Samples.SimpleBot;
+using Samples.Simple;
 
 var host = Host.CreateDefaultBuilder(args);
 
