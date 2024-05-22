@@ -1,4 +1,4 @@
-using Discord.Addons.ChainHandlers.Configuration;
+using Discord.Addons.ChainHandlers;
 using Discord.Addons.ChainHandlers.Default;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +15,9 @@ public static class Configuration
         {
             options.UseChainHandler(handlerOptions =>
             {
-                handlerOptions.Add<ErrorChainHandler>();
-                handlerOptions.Add<ProblemChainHandler>();
+                handlerOptions
+                    .Add<ErrorChainHandler>()
+                    .Add<ProblemChainHandler>();
             });
 
             options.UseFinalHandler(async interactionContext =>
