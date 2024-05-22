@@ -1,15 +1,13 @@
 ﻿#pragma warning disable CS0618 // Type or member is obsolete
 
 using Discord;
-using Discord.Addons.ChainHandler;
-using Discord.Addons.ChainHandler.Common;
-using Discord.Addons.ChainHandler.Default;
+using Discord.Addons.ChainHandlers.Configuration;
+using Discord.Addons.ChainHandlers.Default;
 using Discord.Addons.Hosting;
 using Discord.Commands;
 using Discord.WebSocket;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Samples.SimpleBot;
 
 var host = Host.CreateDefaultBuilder(args);
 
@@ -33,13 +31,39 @@ host.ConfigureDiscordHost((context, config) =>
     config.LogLevel = LogSeverity.Info;
     config.UseCompiledLambda = true;
 })
-.ConfigureServices((_, services) =>
+.ConfigureServices((context, services) =>
 {
-    services
-        .AddHostedService<InteractionHandler>()
-        .AddSingleton<ChainHandlerBuilder>()
-        .AddSingleton<ErrorChainHandler>()
-        .AddSingleton<ProblemChainHandler>();
+    services.AddInteractionHandler(options =>
+    {
+        options.UseChainHandler(handlerOptions =>
+        {
+            handlerOptions.Add<ErrorChainHandler>();
+            handlerOptions.Add<ProblemChainHandler>();
+        });
+
+        options.UseFinalHandler(async interactionContext =>
+        {
+            await interactionContext.Interaction.RespondAsync(
+                "Something bad happened in final!", ephemeral: true);
+        });
+        
+        options.ConfigureInteractionService(async interactionService =>
+        {
+            var stagingGuildId = context.Configuration.GetValue<ulong>("GuildId");
+
+            await interactionService.AddModulesGloballyAsync(
+                true,
+                Array.Empty<Discord.Interactions.ModuleInfo>());
+            await interactionService.AddModulesToGuildAsync(
+                stagingGuildId, 
+                true,
+                Array.Empty<Discord.Interactions.ModuleInfo>());
+            
+            await interactionService.RegisterCommandsToGuildAsync(stagingGuildId);
+        });
+    });
 });
 
-await host.Build().RunAsync();
+await host
+    .Build()
+    .RunAsync();

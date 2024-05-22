@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Discord.Addons.ChainHandler\Discord.Addons.ChainHandler.csproj" />
+      <ProjectReference Include="..\..\Discord.Addons.ChainHandlers\Discord.Addons.ChainHandlers.csproj" />
     </ItemGroup>
 
     <ItemGroup>
