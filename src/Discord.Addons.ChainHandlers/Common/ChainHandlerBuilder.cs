@@ -1,18 +1,11 @@
 using Discord.Addons.ChainHandlers.ChainHandlers;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Discord.Addons.ChainHandlers.Common;
 
 public class ChainHandlerBuilder
 {
-    private readonly IServiceProvider _serviceProvider;
     private IChainHandler? _chainHandler;
     private IChainHandler? _lastChainHandler;
-
-    public ChainHandlerBuilder(IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
 
     public ChainHandlerBuilder Add(ChainHandler chainHandlerToAdd)
     {
