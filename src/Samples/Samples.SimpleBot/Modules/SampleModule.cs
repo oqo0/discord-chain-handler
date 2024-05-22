@@ -2,10 +2,10 @@ using Discord.Interactions;
 
 namespace Samples.SimpleBot.Modules;
 
-public class SampleModule : InteractionModuleBase<SocketInteractionContext>
+internal class SampleModule : InteractionModuleBase<SocketInteractionContext>
 {
     [SlashCommand("sample", "Sample command")]
-    public async Task SampleCommand(string message, string test)
+    internal async Task SampleCommand(string message, string test)
     {
         throw new NotImplementedException();
     }

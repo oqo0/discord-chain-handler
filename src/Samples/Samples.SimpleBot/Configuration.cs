@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Samples.SimpleBot;
 
-public static class Configuration
+internal static class Configuration
 {
-    public static IServiceCollection AddInteraction(
+    internal static IServiceCollection AddInteraction(
         this IServiceCollection serviceCollection,
         IConfiguration configuration)
     {
