@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace Discord.Addons.ChainHandler.Default;
+namespace Discord.Addons.ChainHandlers.Default;
 
 public class ProblemChainHandler : ChainHandlers.ChainHandler
 {

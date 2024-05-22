@@ -1,23 +1,21 @@
 using System.Reflection;
-using Discord;
-using Discord.Addons.ChainHandler;
-using Discord.Addons.ChainHandler.Common;
-using Discord.Addons.ChainHandler.Default;
+using Discord.Addons.ChainHandlers.ChainHandlers;
+using Discord.Addons.ChainHandlers.Common;
+using Discord.Addons.ChainHandlers.Configuration;
 using Discord.Addons.Hosting;
 using Discord.Addons.Hosting.Util;
-using Discord.Interactions;
-using Discord.WebSocket;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Samples.SimpleBot;
+namespace Discord.Addons.ChainHandlers;
 
 public class InteractionHandler : DiscordClientService
 {
     private readonly InteractionService _interactionService;
     private readonly IServiceProvider _serviceProvider;
     private readonly ChainHandlerBuilder _chainHandlerBuilder;
-    private readonly IConfiguration _configuration;
+    private readonly ConfigureInteractionService _configureInteractionService;
+    private readonly ConfigureFinalHandler _configureFinalHandler;
 
     public InteractionHandler(
         DiscordSocketClient client,
@@ -25,35 +23,32 @@ public class InteractionHandler : DiscordClientService
         InteractionService interactionService,
         IServiceProvider serviceProvider,
         ChainHandlerBuilder chainHandlerBuilder, 
-        IConfiguration configuration) : base(client, logger)
+        ConfigureInteractionService configureInteractionService,
+        ConfigureFinalHandler configureFinalHandler) : base(client, logger)
     {
         _interactionService = interactionService;
         _serviceProvider = serviceProvider;
         _chainHandlerBuilder = chainHandlerBuilder;
-        _configuration = configuration;
+        _configureInteractionService = configureInteractionService;
+        _configureFinalHandler = configureFinalHandler;
     }
     
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        var chainHandler = _chainHandlerBuilder
-            .Add<ErrorChainHandler>()
-            .Add<ProblemChainHandler>()
-            .Build();
+        var chainHandlers = _serviceProvider.GetServices<ChainHandler>();
 
-        Client.InteractionCreated += chainHandler.Handle;
+        foreach (var chainHandler in chainHandlers)
+        {
+            _chainHandlerBuilder.Add(chainHandler);
+        }
+        
+        Client.InteractionCreated += _chainHandlerBuilder.Build().Handle;
         _interactionService.InteractionExecuted += HandleInteractionExecute;
         
         await _interactionService.AddModulesAsync(Assembly.GetEntryAssembly(), _serviceProvider);
         await Client.WaitForReadyAsync(cancellationToken);
 
-        var stagingGuildId = _configuration.GetValue<ulong>("GuildId");
-
-        await _interactionService.AddModulesGloballyAsync(
-            true, Array.Empty<ModuleInfo>());
-        await _interactionService.AddModulesToGuildAsync(
-            stagingGuildId, true, Array.Empty<ModuleInfo>());
-        
-        await _interactionService.RegisterCommandsToGuildAsync(stagingGuildId);
+        _configureInteractionService.Invoke(_interactionService);
     }
 
     private async Task HandleInteractionExecute(
@@ -61,7 +56,7 @@ public class InteractionHandler : DiscordClientService
     {
         if (!result.IsSuccess)
         {
-            await interactionContext.Interaction.RespondAsync("Something bad happened!", ephemeral: true);
+            _configureFinalHandler.Invoke(interactionContext);
         }
     }
 }

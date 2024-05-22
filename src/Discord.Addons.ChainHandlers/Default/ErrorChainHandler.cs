@@ -1,9 +1,10 @@
-using Discord.Addons.ChainHandler.Common;
+using Discord.Addons.ChainHandlers.ChainHandlers;
+using Discord.Addons.ChainHandlers.Common;
 using Microsoft.Extensions.Logging;
 
-namespace Discord.Addons.ChainHandler.Default;
+namespace Discord.Addons.ChainHandlers.Default;
 
-public class ErrorChainHandler : ChainHandlers.ChainHandler
+public class ErrorChainHandler : ChainHandler
 {
     private readonly ILogger<ErrorChainHandler> _logger;
 

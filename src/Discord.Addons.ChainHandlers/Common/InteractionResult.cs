@@ -1,4 +1,4 @@
-namespace Discord.Addons.ChainHandler.Common;
+namespace Discord.Addons.ChainHandlers.Common;
 
 public class InteractionResult : IResult
 {

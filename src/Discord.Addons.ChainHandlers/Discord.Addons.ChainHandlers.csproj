@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageId>Discord.Addons.ChainHandler</PackageId>
+        <PackageId>Discord.Addons.ChainHandlers</PackageId>
         <Version>1.0.0</Version>
         <Authors>oqo0</Authors>
         <RepositoryUrl>https://github.com/oqo0/discord-chain-handler</RepositoryUrl>
@@ -15,9 +15,11 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <RootNamespace>Discord.Addons.ChainHandlers</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Discord.Addons.Hosting" Version="6.0.0" />
       <PackageReference Include="Discord.Net" Version="3.14.1" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     </ItemGroup>

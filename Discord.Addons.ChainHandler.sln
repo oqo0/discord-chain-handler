@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{24601C8B-0A58-44D5-BCFA-EB75440462AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Addons.ChainHandler", "src\Discord.Addons.ChainHandler\Discord.Addons.ChainHandler.csproj", "{28C42690-4312-4555-9ACC-59D5A8B6B792}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord.Addons.ChainHandlers", "src\Discord.Addons.ChainHandlers\Discord.Addons.ChainHandlers.csproj", "{28C42690-4312-4555-9ACC-59D5A8B6B792}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{23DA4D8B-D89A-468D-9E29-C75C921BE83D}"
 EndProject
