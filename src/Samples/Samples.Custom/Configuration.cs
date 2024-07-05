@@ -28,7 +28,7 @@ internal static class Configuration
                     "Something bad happened in final!", ephemeral: true);
             });
         
-            options.ConfigureInteractionService(async interactionService =>
+            options.ConfigureInteractionService(async (interactionService, _) =>
             {
                 var stagingGuildId = configuration.GetValue<ulong>("GuildId");
 
