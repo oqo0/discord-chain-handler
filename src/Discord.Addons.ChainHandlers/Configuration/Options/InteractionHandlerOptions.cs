@@ -1,4 +1,7 @@
+using Discord.Addons.ChainHandlers.Common;
+using Discord.Addons.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Discord.Addons.ChainHandlers.Configuration.Options;
 
@@ -25,8 +28,20 @@ public class InteractionHandlerOptions
     }
     
     public InteractionHandlerOptions ConfigureInteractionService<T>(
-        ConfigureInteractionService<T> configureInteractionService)
+        ConfigureInteractionService<T> configureInteractionService,
+        T value)
     {
+        _serviceCollection.AddHostedService(provider =>
+            new InteractionHandler<T>(
+                provider.GetRequiredService<DiscordSocketClient>(),
+                provider.GetRequiredService<ILogger<DiscordClientService>>(),
+                provider.GetRequiredService<InteractionService>(),
+                provider.GetRequiredService<IServiceProvider>(),
+                provider.GetRequiredService<ChainHandlerBuilder>(),
+                provider.GetRequiredService<ConfigureInteractionService<T>>(),
+                provider.GetRequiredService<ConfigureFinalHandler>(),
+                value));
+        
         _serviceCollection.AddSingleton(configureInteractionService);
         return this;
     }

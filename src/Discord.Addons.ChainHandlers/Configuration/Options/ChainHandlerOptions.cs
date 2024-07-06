@@ -23,7 +23,6 @@ public class ChainHandlerOptions
         
         _serviceCollection.AddSingleton<ChainHandler, TChainHandler>();
         _serviceCollection.AddSingleton<ChainHandlerBuilder>();
-        _serviceCollection.AddHostedService<InteractionHandler>();
         
         return this;
     }

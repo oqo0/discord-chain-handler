@@ -28,7 +28,7 @@ internal static class Configuration
                     "Something bad happened in final!", ephemeral: true);
             });
         
-            options.ConfigureInteractionService<IConfiguration>(async (interactionService, _) =>
+            options.ConfigureInteractionService(async (interactionService, _) =>
             {
                 var stagingGuildId = configuration.GetValue<ulong>("GuildId");
 
@@ -41,7 +41,7 @@ internal static class Configuration
                     Array.Empty<Discord.Interactions.ModuleInfo>());
             
                 await interactionService.RegisterCommandsToGuildAsync(stagingGuildId);
-            });
+            }, configuration);
         });
 
         return serviceCollection;

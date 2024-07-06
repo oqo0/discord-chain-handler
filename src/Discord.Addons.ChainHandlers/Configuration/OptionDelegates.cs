@@ -1,5 +1,4 @@
 using Discord.Addons.ChainHandlers.Configuration.Options;
-using Microsoft.Extensions.Configuration;
 
 namespace Discord.Addons.ChainHandlers.Configuration;
 
