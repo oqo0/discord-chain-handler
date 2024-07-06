@@ -15,7 +15,7 @@ public class InteractionHandler : DiscordClientService
     private readonly InteractionService _interactionService;
     private readonly IServiceProvider _serviceProvider;
     private readonly ChainHandlerBuilder _chainHandlerBuilder;
-    private readonly ConfigureInteractionService _configureInteractionService;
+    private readonly ConfigureInteractionService<IConfiguration> _configureInteractionService;
     private readonly ConfigureFinalHandler _configureFinalHandler;
     private readonly IConfiguration _configuration;
 
@@ -25,7 +25,7 @@ public class InteractionHandler : DiscordClientService
         InteractionService interactionService,
         IServiceProvider serviceProvider,
         ChainHandlerBuilder chainHandlerBuilder, 
-        ConfigureInteractionService configureInteractionService,
+        ConfigureInteractionService<IConfiguration> configureInteractionService,
         ConfigureFinalHandler configureFinalHandler,
         IConfiguration configuration) : base(client, logger)
     {

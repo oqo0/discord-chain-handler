@@ -24,8 +24,8 @@ public class InteractionHandlerOptions
         return this;
     }
     
-    public InteractionHandlerOptions ConfigureInteractionService(
-        ConfigureInteractionService configureInteractionService)
+    public InteractionHandlerOptions ConfigureInteractionService<T>(
+        ConfigureInteractionService<T> configureInteractionService)
     {
         _serviceCollection.AddSingleton(configureInteractionService);
         return this;
