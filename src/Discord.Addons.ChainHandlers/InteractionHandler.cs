@@ -14,6 +14,7 @@ public class InteractionHandler<T> : DiscordClientService
     private readonly InteractionService _interactionService;
     private readonly IServiceProvider _serviceProvider;
     private readonly ChainHandlerBuilder _chainHandlerBuilder;
+    private readonly ConfigureInteractionServiceBeforeStart<T> _configureInteractionServiceBeforeStart;
     private readonly ConfigureInteractionService<T> _configureInteractionService;
     private readonly ConfigureFinalHandler _configureFinalHandler;
     private readonly T _value;
@@ -23,7 +24,8 @@ public class InteractionHandler<T> : DiscordClientService
         ILogger<DiscordClientService> logger,
         InteractionService interactionService,
         IServiceProvider serviceProvider,
-        ChainHandlerBuilder chainHandlerBuilder, 
+        ChainHandlerBuilder chainHandlerBuilder,
+        ConfigureInteractionServiceBeforeStart<T> configureInteractionServiceBeforeStart,
         ConfigureInteractionService<T> configureInteractionService,
         ConfigureFinalHandler configureFinalHandler,
         T value) : base(client, logger)
@@ -34,10 +36,13 @@ public class InteractionHandler<T> : DiscordClientService
         _configureInteractionService = configureInteractionService;
         _configureFinalHandler = configureFinalHandler;
         _value = value;
+        _configureInteractionServiceBeforeStart = configureInteractionServiceBeforeStart;
     }
     
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
+        _configureInteractionServiceBeforeStart.Invoke(_interactionService, _value);
+        
         var chainHandlers = _serviceProvider.GetServices<ChainHandler>();
 
         foreach (var chainHandler in chainHandlers)

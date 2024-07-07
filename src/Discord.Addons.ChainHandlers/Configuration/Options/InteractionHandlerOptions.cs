@@ -32,17 +32,39 @@ public class InteractionHandlerOptions
         T value)
     {
         _serviceCollection.AddHostedService(provider =>
-            new InteractionHandler<T>(
-                provider.GetRequiredService<DiscordSocketClient>(),
-                provider.GetRequiredService<ILogger<DiscordClientService>>(),
-                provider.GetRequiredService<InteractionService>(),
-                provider.GetRequiredService<IServiceProvider>(),
-                provider.GetRequiredService<ChainHandlerBuilder>(),
-                provider.GetRequiredService<ConfigureInteractionService<T>>(),
-                provider.GetRequiredService<ConfigureFinalHandler>(),
-                value));
+            GetInteractionHandler(provider, (_, _) => {}, configureInteractionService, value));
         
         _serviceCollection.AddSingleton(configureInteractionService);
         return this;
+    }
+    
+    public InteractionHandlerOptions ConfigureInteractionService<T>(
+        ConfigureInteractionServiceBeforeStart<T> configureInteractionServiceBeforeStart,
+        ConfigureInteractionService<T> configureInteractionService,
+        T value)
+    {
+        _serviceCollection.AddHostedService(provider =>
+            GetInteractionHandler(provider, configureInteractionServiceBeforeStart, configureInteractionService, value));
+        
+        _serviceCollection.AddSingleton(configureInteractionService);
+        return this;
+    }
+    
+    private static InteractionHandler<T> GetInteractionHandler<T>(
+        IServiceProvider serviceProvider,
+        ConfigureInteractionServiceBeforeStart<T> configureInteractionServiceBeforeStart,
+        ConfigureInteractionService<T> configureInteractionService,
+        T value)
+    {
+        return new InteractionHandler<T>(
+            serviceProvider.GetRequiredService<DiscordSocketClient>(),
+            serviceProvider.GetRequiredService<ILogger<DiscordClientService>>(),
+            serviceProvider.GetRequiredService<InteractionService>(),
+            serviceProvider.GetRequiredService<IServiceProvider>(),
+            serviceProvider.GetRequiredService<ChainHandlerBuilder>(),
+            configureInteractionServiceBeforeStart,
+            configureInteractionService,
+            serviceProvider.GetRequiredService<ConfigureFinalHandler>(),
+            value);
     }
 }
